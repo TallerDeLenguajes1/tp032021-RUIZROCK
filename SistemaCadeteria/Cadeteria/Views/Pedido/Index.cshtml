@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Pedido";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ingresar Pedido</h1>
+    <form asp-controller="Pedido" asp-action="crearPedido" method="post" class="row g-3">
+        <div class="col-12">
+            <label for="obs" class="form-label">Observaciones</label>
+            <input type="text" class="form-control" id="obs" name="obs" required>
+        </div>
+        <div class="col-md-6">
+            <label for="nombre" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="nombre" name="nombreC" required>
+        </div>
+        <div class="col-md-6">
+            <label for="id" class="form-label">DNI/CUIT cliente</label>
+            <input type="text" class="form-control" id="id" name="idC" required>
+        </div>
+        <div class="col-md-6">
+            <label for="direc" class="form-label">Direccion cliente</label>
+            <input type="text" class="form-control" id="direc" name="direcC" required>
+        </div>
+        <div class="col-md-6">
+            <label for="tel" class="form-label">Telefono cliente</label>
+            <input type="text" class="form-control" id="tel" name="telC" placeholder="+54 381-5123123" required>
+        </div>
+        <div class="col-md-4">
+            <label for="estado" class="form-label">Estado pedido</label>
+            <select id="estado" name="estado" class="form-select">
+                <option selected>Pendiente</option>
+                <option>Entregado</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Ingresar</button>
+        </div>
+        <div class="col-12">
+            <a asp-controller="Pedido" asp-action="MostrarPedidos" class="btn btn-success">Ver Listado</a>
+        </div>
+    </form>
+</div>

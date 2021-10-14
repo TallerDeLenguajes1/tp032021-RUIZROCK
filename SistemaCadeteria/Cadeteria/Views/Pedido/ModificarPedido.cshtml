@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Modificar Pedido";
+}
+@model Pedidos
+
+<div class="text-center">
+    <h1 class="display-4">Modificar Pedido @Model.NumeroPedido</h1>
+    <form asp-controller="Pedido" asp-action="cambiarDatosPedido" method="post" class="row g-3">
+        <input type="hidden" class="form-control" id="numPedido" name="numPedido" value="@Model.NumeroPedido" required>
+        <div class="col-12">
+            <label for="obs" class="form-label">Observaciones</label>
+            <input type="text" class="form-control" id="obs" name="obs" value="@Model.Observaciones" required>
+        </div>
+        <div class="col-md-6">
+            <label for="nombre" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="nombre" name="nombreC" value="@Model.Cliente.Nombre" required>
+        </div>
+        <div class="col-md-6">
+            <label for="id" class="form-label">DNI/CUIT cliente</label>
+            <input type="text" class="form-control" id="id" name="idC" value="@Model.Cliente.Id" required>
+        </div>
+        <div class="col-md-6">
+            <label for="direc" class="form-label">Direccion cliente</label>
+            <input type="text" class="form-control" id="direc" name="direcC" value="@Model.Cliente.Direccion" required>
+        </div>
+        <div class="col-md-6">
+            <label for="tel" class="form-label">Telefono cliente</label>
+            <input type="text" class="form-control" id="tel" name="telC" placeholder="+54 381-5123123" value="@Model.Cliente.Telefono" required>
+        </div>
+        <div class="col-md-4">
+            <label for="estado" class="form-label">Estado pedido</label>
+            <select id="estado" name="estado" class="form-select">
+                @if (Model.Estado == "Pendiente")
+                {
+                    <option selected>Pendiente</option>
+                    <option>Entregado</option>
+                }
+                else
+                {
+                    <option>Pendiente</option>
+                    <option selected>Entregado</option>
+                }
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Modificar</button>
+        </div>
+    </form>
+</div>
