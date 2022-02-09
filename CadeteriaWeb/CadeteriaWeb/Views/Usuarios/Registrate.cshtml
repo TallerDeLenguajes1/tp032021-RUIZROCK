@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Registro";
+}
+@model CadeteriaWeb.Models.ViewModels.UsuarioCreateViewModel;
+
+<section class="">
+    <article class="">
+        <h3 class="">Registrarse</h3>
+
+        <form asp-action="RegisterPost" method="post">
+            <div class="form-outline mb-4">
+                <label asp-for="Username" class=""></label>
+                <input asp-for="Username" type="text" class="">
+                <span asp-validation-for="Username" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="Password" class=""></label>
+                <input asp-for="Password" type="password" class="">
+                <span asp-validation-for="Password" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="PasswordRetry" class=""></label>
+                <input asp-for="PasswordRetry" type="password" class="">
+                <span asp-validation-for="PasswordRetry" class=""></span>
+            </div>
+
+            <button class="" type="submit">Enviar</button>
+
+            @if (Model.Message != null && Model.Message != "")
+            {
+                <hr class="">
+
+                <div class="">
+                    <strong>Error!</strong> @Model.Message
+                </div>
+            }
+
+        </form>
+    </article>
+</section>

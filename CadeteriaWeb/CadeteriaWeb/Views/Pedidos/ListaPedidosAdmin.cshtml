@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pedidos";
+}
+@model CadeteriaWeb.Repositories.DataContext;
+
+
+    <section class="">
+        <hr class="">
+        <h2>Listado de pedidos</h2>
+
+        <p>
+            <a asp-action="CreatePedido" asp-controller="Pedidos">Crear pedido</a>
+        </p>
+        <table class="col-7">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Observacion
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        Cliente
+                    </th>
+                    <th>
+                        Cadete
+                    </th>
+                    <th>
+                        Entregar | Cancelar
+                    </th>
+                    <th>
+                        Modificar | Eliminar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Pedidos.GetAllPedidos())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                            <a class="" asp-controller="Pedidos" asp-action="VerCliente" asp-route-id="@item.Cliente.Id">Ver Cliente</a>
+                        </td>
+                        <td>
+                            @if (item.Cadete == null)
+                            {
+                                @if (item.Estado != CadeteriaWeb.Entities.EstadoPedido.Cancelado)
+                                {
+                                    <a class="" asp-controller="Pedidos" asp-action="ModificarPedido" asp-route-id="@item.Id">Asignar cadete</a>
+                                }
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.Cadete.Nombre)
+                                <a class="" asp-controller="Cadetes" asp-action="InfoCadete" asp-route-id="@item.Cadete.Id">Info Cadete</a>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Estado != CadeteriaWeb.Entities.EstadoPedido.En_Camino)
+                            {
+                                <a asp-action="EntregarPedido" asp-controller="Pedidos" asp-route-id="@item.Id" class="  ">Entregar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="EntregarPedido" asp-controller="Pedidos" asp-route-id="@item.Id" class=" ">Entregar</a>
+                            }
+                            |
+                            @if (item.Estado == CadeteriaWeb.Entities.EstadoPedido.Entregado || item.Estado == CadeteriaWeb.Entities.EstadoPedido.Cancelado)
+                            {
+                                <a asp-action="CancelarPedido" asp-controller="Pedidos" asp-route-id="@item.Id" class="  ">Cancelar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="CancelarPedido" asp-controller="Pedidos" asp-route-id="@item.Id" class=" ">Cancelar</a>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Estado == CadeteriaWeb.Entities.EstadoPedido.En_Camino || item.Estado == CadeteriaWeb.Entities.EstadoPedido.Procesando)
+                            {
+                                <a asp-controller="Pedidos" asp-action="ModificarPedido" asp-route-id="@item.Id" class=" ">Modificar</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Pedidos" asp-action="ModificarPedido" asp-route-id="@item.Id" class="  ">Modificar</a>
+                            }
+                            |
+                            <a asp-controller="Pedidos" asp-action="DeletePedido" asp-route-id="@item.Id" class=" ">Borrar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>

@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pedidos";
+}
+@model CadeteriaWeb.Repositories.DataContext;
+
+
+<section class="">
+    <hr class="  ">
+    <h2>Listado de pedidos</h2>
+
+    <p>
+        <a asp-action="CrearPedido" asp-controller="Pedidos">Crear pedido</a>
+    </p>
+    <table class="">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Observacion
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Cadete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Pedidos.GetAllPedidos())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                    </td>
+                    <td>
+                        @if (item.Cadete != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Cadete.Nombre)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

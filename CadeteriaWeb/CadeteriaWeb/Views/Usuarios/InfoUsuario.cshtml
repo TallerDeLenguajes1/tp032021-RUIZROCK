@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Mi Usuario";
+}
+@model CadeteriaWeb.Entities.Usuario;
+
+<section class="">
+    <article>
+        <h3 class="">Mi Usuario</h3>
+
+        <div class="">
+            <p>Username: @Model.Username</p>
+        </div>
+
+        <div class="">
+            <p>Rol: @Model.Rol</p>
+        </div>
+
+        <hr class="">
+
+        @if (Model.Rol.ToString() != "ADMIN")
+        {
+            <div>
+                <p class="">Querés cambiar tu nombre de usuario o contraseña? <a asp-action="ModificarUsuario" asp-route-id="@Model.Id" class="">Haz click aquí!</a></p>
+                <p class="">Querés eliminar tu cuenta? <a asp-action="DeleteUsuario" asp-route-id="@Model.Id" class="fw-bold">Haz click aquí!</a> <b class="">(La eliminación no es reversible, pensalo bien antes de hacerlo)</b></p>
+            </div>
+        }
+    </article>           
+</section>

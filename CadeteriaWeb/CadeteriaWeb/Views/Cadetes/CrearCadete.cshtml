@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Crear cadete";
+}
+@model CadeteriaWeb.Models.ViewModels.CadeteCreateViewModel;
+
+
+<section>
+    <article>
+        <h2>Crear Cadete</h2>
+
+        <form asp-action="CreateCadetePost" method="post">
+            
+            <div class="">
+            <label asp-for="Nombre" class=""></label>
+            <input asp-for="Nombre" type="text" class="">
+            <span asp-validation-for="Nombre"></span>
+            </div>
+
+            <div class="">
+            <label asp-for="Direccion" class=""></label>
+            <input asp-for="Direccion" type="text" class="">
+            <span asp-validation-for="Direccion"></span>
+            </div>
+
+            <div class="">
+            <label asp-for="Telefono" class=""></label>
+            <input asp-for="Telefono" type="number" class="">
+            <span asp-validation-for="Telefono"></span>
+            </div>
+
+            <button class="" type="submit">Confirmar</button>
+
+            @if (Model.Message != null && Model.Message != "")
+            {
+                <hr class="">
+
+                <div class="">
+                    <strong>Error!</strong> @Model.Message
+                </div>
+            }
+
+        </form>
+    </article>
+</section>

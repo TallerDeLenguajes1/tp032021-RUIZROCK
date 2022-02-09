@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Modificar pedido";
+}
+@model CadeteriaWeb.Models.ViewModels.PedidoUpdateViewModel;
+
+
+<section class="">
+    <article>
+        <h2 class="">Modificar pedido</h2>
+
+        <form asp-action="UpdatePedidoPost" method="post">
+            <input hidden asp-for="Id" type="text" class=" ">
+            <input hidden asp-for="IdCliente" type="text" class=" ">
+            <input hidden asp-for="Estado" type="text" class=" ">
+
+            <div class=" ">
+                <label asp-for="Observacion" class=""></label>
+                <input asp-for="Observacion" type="text" class=" ">
+                <span asp-validation-for="Observacion" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="NombreCliente" class=""></label>
+                <input asp-for="NombreCliente" type="text" class=" ">
+                <span asp-validation-for="NombreCliente" class=""></span>
+            </div>
+
+            <div class=" ">
+                <label asp-for="DireccionCliente" class=""></label>
+                <input asp-for="DireccionCliente" type="text" class="">
+                <span asp-validation-for="DireccionCliente" class=""></span>
+            </div>
+
+            <div class=" ">
+                <label asp-for="TelefonoCliente" class=""></label>
+                <input asp-for="TelefonoCliente" type="text" class="">
+                <span asp-validation-for="TelefonoCliente" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="IdCadete" class=""></label>
+                <select asp-for="IdCadete" class="">
+                    <option value="0">---Sin asignar---</option>
+                    @foreach (var C in Model.Cadetes)
+                    {
+                        @if (Model.IdCadete != 0 && Model.IdCadete == C.Id)
+                        {
+                            <option value="@C.Id" selected>@C.Nombre</option>
+                        }
+                        else
+                        {
+                            <option value="@C.Id">@C.Nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IdCadete" class=""></span>
+            </div>
+
+            <button class="" type="submit">Confirmar</button>
+
+            @if (Model.Message != null && Model.Message != "")
+            {
+                <hr class="my-4">
+
+                <div class=" ">
+                    <strong>Error!</strong> @Model.Message
+                </div>
+            }
+
+        </form>
+    </article>       
+</section>

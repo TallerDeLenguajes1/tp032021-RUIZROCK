@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Modificar usuario";
+}
+@model CadeteriaWeb.Models.ViewModels.UsuarioUpdateViewModel;
+
+
+<section class="">
+    <div class="">
+        <h3 class="">Modificar usuario</h3>
+
+        <form asp-action="UpdateUsuarioPost" method="post">
+            <input hidden asp-for="Id" type="text" class="">
+
+            <div class="">
+                <label asp-for="Username" class=""></label>
+                <input asp-for="Username" type="text" class="">
+                <span asp-validation-for="Username" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="Password" class=""></label>
+                <input asp-for="Password" type="password" class="">
+                <span asp-validation-for="Password" class=""></span>
+            </div>
+
+            <div class="">
+                <label asp-for="PasswordRetry" class=""></label>
+                <input asp-for="PasswordRetry" type="password" class="">
+                <span asp-validation-for="PasswordRetry" class=""></span>
+            </div>
+
+            <button class="" type="submit">Confirmar</button>
+
+            @if (Model.Message != null && Model.Message != "")
+            {
+                <hr class="">
+
+                <div class="">
+                    <strong>Error!</strong> @Model.Message
+                </div>
+            }
+        </form>
+    </div>
+</section>

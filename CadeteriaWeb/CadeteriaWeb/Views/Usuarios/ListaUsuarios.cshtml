@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+@model CadeteriaWeb.Repositories.DataContext;
+
+<section class="">
+    <article>
+        <hr class="">
+        <h1>Listado de usuarios</h1>
+
+        <p>
+            <a asp-action="CreateUsuario">Crear usuario</a>
+        </p>
+        <table class="table col-4">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Nombre de usuario
+                    </th>
+                    <th>
+                        Rol
+                    </th>
+                    <th>
+                        Editar | Borrar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Usuarios.GetAllUsuarios())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            <a asp-controller="Usuarios" asp-action="InfoUsuario" asp-route-id="@item.Id" class="">@Html.DisplayFor(modelItem => item.Username)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rol)
+                        </td>
+                        <td>
+                            <a asp-controller="Usuarios" asp-action="ModificarUsuario" asp-route-id="@item.Id" class="">Modificar</a>
+                            |
+                            <a asp-controller="Usuarios" asp-action="DeleteUsuario" asp-route-id="@item.Id" class="">borrar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>

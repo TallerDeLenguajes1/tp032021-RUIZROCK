@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Lista de Cadetes";
+}
+@model CadeteriaWeb.Repositories.DataContext;
+
+
+<main role="main" class="">
+        <hr class="">
+        <h1>Listado de cadetes</h1>
+
+        <p>
+            <a asp-action="CrearCadete">Crear cadete</a>
+        </p>
+        <table class="col-6">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Direccion
+                    </th>
+                    <th>
+                        Telefono
+                    </th>
+                    <th>
+                        Ver pedidos
+                    </th>
+                    <th>
+                        Editar | Borrar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cadetes.GetAllCadetes())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            <a asp-controller="Cadetes" asp-action="InfoCadete" asp-route-id="@item.Id" class="">Ver Info</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Cadetes" asp-action="ModificarCadete" asp-route-id="@item.Id" class="">Modificar</a>
+                            |
+                            <a asp-controller="Cadetes" asp-action="DeleteCadete" asp-route-id="@item.Id" class="">Borrar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
